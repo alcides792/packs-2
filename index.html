@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title> Conteúdos da Lyra </title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="brand">•Conteúdos Privados</div>
+    <nav class="nav">
+        <a href="#produtos">Produtos</a>
+    </nav>
+    <button class="cta" onclick="openTelegram()">Falar no Telegram</button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-inner">
+        <h1>Conteúdos Exclusivos</h1><br>
+      <br>  
+      <h3> <p>Fotos, vídeos e packs privados </h3> </p> 
+<h4>entregue com discrição e qualidade.</p> 
+</h4><br>
+      <p> <a class="btn-primary" href="#produtos">Ver Vitrine</a>
+    </p> 
+      </div>
+      <div class="hero-overlay"></div>
+    </section>
+
+    <section id="produtos" class="produtos">
+      <h2 class="section-title">Packs em Destaque</h2>
+
+    <br>  <div class="grid">
+        <article class="card" tabindex="0">
+          <img src="mia.monroex_565093858_18086937835937154_8053127320206469756_n.jpg" alt="Pack Premium" />
+          <div class="card-body">
+            <h3>PACOTE BRONZE</h3>
+            <p class="price">50R$</p>
+            <p class="desc"> <strong>40 fotos e 20 vídeos. Atualizações semanais.</strong></p>
+            <div class="card-actions">
+              <a class="btn-outline" href="product1.html">Ver Detalhes</a>
+              <a class="btn-primary" href="product1.html">Descubra o Conteúdo
+              </a>
+            </div>
+          </div>
+        </article>
+
+       <br> <article class="card" tabindex="0">
+          <img src="mia.monroex_565183778_18085992865937154_7002290567586090973_n.jpg" alt="Pack VIP" />
+          <div class="card-body">
+            <h3>PACOTE DIAMANTE</h3>
+            <p class="price">80R$</p>
+            <p class="desc"> <strong>75 fotos e 50 vídeos. Atualizações semanais.</strong></p>
+            <div class="card-actions">
+              <a class="btn-outline" href="product2.html">Ver Detalhes</a>
+              <a class="btn-primary" href="product2.html">Descubra o Conteúdo</a>
+            </div>
+          </div>
+        </article>
+
+        <br> <article class="card" tabindex="0">
+          <img src="mia.monroex_567133758_18086740846937154_8622226715872293962_n.jpg" alt="Assinatura Mensal" />
+          <div class="card-body">
+            <h3>Assinatura Mensal de grupo VIP</h3>
+            <p class="price">95R$ / mês</p>
+            <p class="desc"> <strong>Acesso ilimitado à galeria + canal VIP no Telegram.</strong></p>
+            <div class="card-actions">
+              <a class="btn-outline" href="product3.html">Ver Detalhes</a>
+              <a class="btn-primary" href="product3.html">Descubra o Conteúdo </a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">© <span id="ano"></span> • Entrega discreta</footer>
+
+  <!-- SCRIPT DO SCROLL AUTOMÁTICO -->
+  <script>
+    const galeria = document.querySelector('.gallery');
+
+    setInterval(() => {
+      if (!galeria) return;
+
+      const larguraImagem = galeria.querySelector("img")?.clientWidth || 300;
+
+      // Rola 1 imagem por vez
+      galeria.scrollLeft += larguraImagem + 10;
+
+      // Quando chega no fim, volta ao início
+      if (galeria.scrollLeft + galeria.clientWidth >= galeria.scrollWidth - 5) {
+        galeria.scrollLeft = 0;
+      }
+    }, 4000); // 4 segundos
+  </script>
+
+  <script src="script.js"></script>
+</body>
+</html>
