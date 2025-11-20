@@ -1,62 +1,322 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Assinatura Mensal — Detalhes</title>
-  <link rel="stylesheet" href="styles.css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Assinatura Mensal — Detalhes</title>
+    <!-- Não precisamos mais do link styles.css, pois colocamos todos os estilos aqui dentro -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* BASE GERAL E EFEITO DE FUNDO (COPIADO DO ALERTA-VIDRO) */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #ffffff; /* Cor do texto padrão (clara para o fundo) */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            
+            /* ------------------------------------------------------------- */
+            /* ESPAÇO PARA A IMAGEM DE FUNDO - COLOQUE O SEU LINK AQUI */
+            /* 1. Mude o 'url()' abaixo para o link da sua imagem. */
+            background-image: url('fundo\ 3.jpg'); 
+            /* 2. Cor de fallback, caso a imagem não carregue */
+            background-color: #1a1a1a;
+            
+            /* 3. Propriedades para garantir que a imagem cubra toda a tela */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; 
+            /* ------------------------------------------------------------- */
+        }
+
+        /* ESTILOS DE COMPONENTES DO LAYOUT (HEADER, FOOTER) */
+        .header {
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .brand {
+            font-weight: 700;
+            font-size: 1.2em;
+            color: #ff9900; /* Laranja/Dourado mais forte para Assinatura */
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .brand:hover {
+            color: #ffffff;
+        }
+
+        .cta {
+            background: linear-gradient(45deg, #7c4dff, #3f51b5); /* Cor de destaque para Assinatura (Roxo/Azul) */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        .cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+        }
+        
+        .footer {
+            margin-top: auto; /* Empurra o footer para baixo */
+            padding: 15px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            font-size: 0.9em;
+            color: #aaa;
+        }
+
+        /* BOX PRINCIPAL DO PRODUTO (Efeito de Vidro) */
+        .product-page {
+            max-width: 1200px;
+            width: 90%;
+            margin: 30px auto;
+            padding: 40px;
+            box-sizing: border-box;
+
+            /* Estilo Glassmorphism aplicado ao box principal */
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+            
+            /* Layout Grid para a Galeria e Info */
+            display: grid;
+            grid-template-columns: 2fr 1fr; /* Galeria maior que info */
+            gap: 40px;
+        }
+
+        /* Galeria de Imagens */
+        .gallery {
+            display: flex;
+            overflow-x: scroll; /* Permite rolar horizontalmente */
+            gap: 15px;
+            padding-bottom: 10px;
+            border-radius: 10px;
+            /* Estilo para a barra de rolagem (opcional) */
+            -webkit-overflow-scrolling: touch;
+        }
+        .gallery img {
+            height: 350px; /* Altura fixa para scroll */
+            width: auto;
+            object-fit: cover;
+            border-radius: 10px;
+            flex-shrink: 0; /* Impede que a imagem encolha */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease;
+        }
+        .gallery img:hover {
+             transform: scale(1.03);
+        }
+        
+        /* Informações do Produto */
+        .product-info {
+            color: white;
+            padding: 0;
+        }
+        .product-info h1 {
+            color: #ff9900; /* Destaque para Assinatura */
+            font-size: 2.5em;
+            margin-top: 0;
+            margin-bottom: 10px;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+        }
+        .price {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .long-desc {
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        /* Botões */
+        .btn-primary, .btn-outline {
+            display: block;
+            text-align: center;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin-bottom: 10px;
+        }
+        .btn-primary {
+            background: linear-gradient(45deg, #7c4dff, #3f51b5); /* Gradiente de Compra da Assinatura */
+            color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+        }
+        .btn-outline {
+            background: none;
+            border: 2px solid white;
+            color: white;
+        }
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .actions {
+            margin-top: 30px;
+        }
+
+        /* Bloco de Alerta Lead */
+        .lead-alert {
+            max-width: 500px;
+            margin: 20px auto 40px auto;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            
+            /* Glassmorphism Suave */
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        }
+        .lead-alert h3 {
+            color: #ffcc00; /* Amarelo */
+            margin-top: 0;
+            font-size: 1.5em;
+        }
+        .lead-alert h4 p {
+            font-size: 1.1em;
+            line-height: 1.5;
+        }
+        
+        /* Responsividade */
+        @media (max-width: 900px) {
+            .product-page {
+                grid-template-columns: 1fr;
+                padding: 30px;
+                gap: 30px;
+            }
+            .gallery img {
+                height: 250px;
+            }
+        }
+        @media (max-width: 600px) {
+             .product-page {
+                padding: 20px;
+                width: 95%;
+            }
+            .product-info h1 {
+                font-size: 2em;
+            }
+            .price {
+                font-size: 1.5em;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header class="header">
-    <a class="brand" href="index.html">← Vitrine</a>
-    <button class="cta" onclick="openTelegram('Quero assinar a Assinatura Mensal')">Assinar</button>
-  </header>
+    <header class="header">
+        <a class="brand" href="index.html">← Vitrine</a>
 
-  <main class="product-page">
-    <div class="gallery">
-       <img src="product 3 (1).jpg" alt="preview" />
-       <img src="product 3 (2).jpg" alt="preview" />
-       <img src="product 3 (3).jpg" alt="preview" />
-       <img src="product 3 (4).jpg" alt="preview" />
-       <img src="product 3 (5).jpg" alt="preview" />
-       <img src="product 3 (6).jpg" alt="preview" />
-       <img src="product 3 (7).jpg" alt="preview" />
-       <img src="produt agressivo  (3).jpg" alt="preview" />
-       <img src="product 3 (7).jpg" alt="preview" />
-       <img src="produt agressivo  (4).jpg" alt="preview" />
-       <img src="produt agressivo  (5).jpg" alt="preview" />
-       <img src="produt agressivo  (6).jpg" alt="preview" />
-       <img src="produt agressivo  (7).jpg" alt="preview" />
-       <img src="produt agressivo  (8).jpg" alt="preview" />
-      
+        <!-- Botão no header também leva ao alerta com o pacote correto -->
+        <button class="cta" onclick="window.location.href='alerta-vidro.html?pacote=assinatura%20mensal'">
+            Assinar
+        </button>
+    </header>
 
+    <main class="product-page">
+        <!-- Galeria: Scroll Horizontal -->
+        <div class="gallery">
+            <img src="product 3 (1).jpg" alt="preview" />
+            <img src="product 3 (2).jpg" alt="preview" />
+            <img src="product 3 (3).jpg" alt="preview" />
+            <img src="product 3 (4).jpg" alt="preview" />
+            <img src="product 3 (5).jpg" alt="preview" />
+            <img src="product 3 (6).jpg" alt="preview" />
+            <img src="product 3 (7).jpg" alt="preview" />
+            <img src="produt agressivo  (3).jpg" alt="preview" />
+            <img src="product 3 (7).jpg" alt="preview" />
+            <img src="produt agressivo  (6).jpg" alt="preview" />
+            <img src="produt agressivo  (5).jpg" alt="preview" />
+            <img src="produt agressivo  (6).jpg" alt="preview" />
+            <img src="produt agressivo  (7).jpg" alt="preview" />
+            <img src="produt agressivo  (8).jpg" alt="preview" />
+        </div>
+
+        <!-- Informações do Produto -->
+        <div class="product-info">
+            <h1>Assinatura Mensal</h1>
+            <p class="price">95R$ / mês</p> 
+            <p class="long-desc">
+                Acesso ilimitado à galeria e ao canal VIP no Telegram.
+            </p> 
+
+            <div class="actions">
+                <!-- Alterado para usar o alerta-vidro.html com o pacote ASSINATURA MENSAL -->
+                <a class="btn-primary" href="alerta-vidro.html?pacote=assinatura%20mensal">
+                    escolher este pacote
+                </a>
+
+                <a class="btn-outline" href="index.html">Voltar para a Vitrine</a> 
+            </div>
+        </div>
+    </main>
+
+    <!-- Bloco de Alerta Lead -->
+    <div class="lead-alert">
+        <h3>🎁 Presente Especial</h3>
+        <h4> <p>
+            Quando falar comigo no Telegram, envie a frase: 
+            <strong>“Vim pela Vitrine”</strong> para receber um presentinho exclusivo 💗<br>
+            Escolhe o pacote que você quer e me manda o nome dele no Telegram, assim sei que você chegou pelo site e te dou prioridade 💞
+        </p> </h4>
     </div>
 
-    <div class="product-info">
-      <h1>Assinatura Mensal</h1>
-      <p class="price">95R$ / mês</p>
-      <p class="long-desc">
-        Acesso ilimitado à galeria e ao canal VIP no Telegram.
-      </p> <br>
-      <div class="actions">
-        <a class="btn-primary" href="https://t.me/Lyraababe" target="_blank">Iniciar conversa no Telegram</a> <br>
-       <p> 
-        <br> 
-       </p> <a class="btn-outline" href="index.html">Voltar</a>
-      </div>
-    </div>
-  </main>
+    <footer class="footer">© <span id="ano2"></span> • Privacidade Garantida</footer>
+    
+    <script>
+        // Define o ano atual no footer (usando id 'ano2' para consistência)
+        document.getElementById('ano2').textContent = new Date().getFullYear();
 
-  <div class="lead-alert">
-    <h3>🎁 Presente Especial</h3>
-   <h4> <p>
-      Quando falar comigo no Telegram, envie a frase: 
-      <strong>“Vim pela Vitrine”</strong> para receber um presentinho exclusivo 💗<br>
-      Escolhe o pacote que você quer e me manda o nome dele no Telegram, assim sei que você chegou pelo site e te dou prioridade 💞
-    </p> </h4>
-  </div>
+        // Script de scroll para a galeria (opcional, pode ser removido)
+        const galeria = document.querySelector('.gallery');
+        let scrollAmount = 0;
+        const scrollStep = 1; // Velocidade do scroll
 
-  <footer class="footer">© <span id="ano4"></span></footer>
-  <script src="script.js"></script>
+        function autoScroll() {
+            scrollAmount += scrollStep;
+            galeria.scrollLeft = scrollAmount;
+
+            // Se chegou ao fim, volta ao início
+            if (galeria.scrollLeft + galeria.clientWidth >= galeria.scrollWidth - 1) {
+                scrollAmount = 0;
+            }
+            requestAnimationFrame(autoScroll);
+        }
+
+        // Você pode ativar o scroll automático se quiser, descomentando a linha abaixo:
+        // requestAnimationFrame(autoScroll);
+    </script>
 </body>
 </html>
