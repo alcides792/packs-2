@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bem-vindo! ✨</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    /* Efeitos de fundo e corpo */
+    body {
+      font-family: 'Poppins', sans-serif;
+
+      /* ------------------------------------------------------------- */
+      /* ESPAÇO PARA A IMAGEM DE FUNDO - COLOQUE O SEU LINK AQUI */
+      /* 1. Mude o 'url()' abaixo para o link da sua imagem. */
+      background-image: url('fundo\ 7op.jpg');
+      /* 2. Cor de fallback, caso a imagem não carregue */
+      background-color: #1e3a8a;
+
+      /* 3. Propriedades para garantir que a imagem cubra toda a tela */
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      /* Mantém o fundo fixo ao rolar */
+      /* ------------------------------------------------------------- */
+
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+      box-sizing: border-box;
+      text-align: center;
+      overflow: hidden;
+      /* Evita barras de rolagem desnecessárias */
+    }
+
+    /* Bolhas de fundo (apenas para efeito visual) */
+    .bubble {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(243, 243, 243, 0.1);
+      animation: float 10s infinite ease-in-out;
+    }
+
+    .bubble:nth-child(1) {
+      width: 60px;
+      height: 60px;
+      top: 10%;
+      left: 15%;
+      animation-delay: 0s;
+    }
+
+    .bubble:nth-child(2) {
+      width: 90px;
+      height: 90px;
+      top: 30%;
+      right: 20%;
+      animation-delay: 2s;
+    }
+
+    .bubble:nth-child(3) {
+      width: 70px;
+      height: 70px;
+      bottom: 15%;
+      left: 30%;
+      animation-delay: 4s;
+    }
+
+    .bubble:nth-child(4) {
+      width: 110px;
+      height: 110px;
+      bottom: 20%;
+      right: 10%;
+      animation-delay: 6s;
+    }
+
+    .bubble:nth-child(5) {
+      width: 80px;
+      height: 80px;
+      top: 5%;
+      right: 40%;
+      animation-delay: 8s;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0px) scale(1);
+      }
+
+      50% {
+        transform: translateY(-20px) scale(1.05);
+      }
+
+      100% {
+        transform: translateY(0px) scale(1);
+      }
+    }
+
+    /* Estilo do box principal com efeito de vidro (glassmorphism) */
+    .glass-box {
+      background: rgba(41, 40, 40, 0.15);
+      /* Fundo semi-transparente */
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      /* Borda suave */
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+      /* Sombra para profundidade */
+      backdrop-filter: blur(10px);
+      /* O "coração" do efeito de vidro */
+      -webkit-backdrop-filter: blur(10px);
+      /* Compatibilidade Safari */
+      padding: 40px;
+      max-width: 450px;
+      width: 100%;
+      transform: translateY(0);
+      animation: fadeInScale 0.8s ease-out forwards;
+      position: relative;
+      /* Para z-index sobre as bolhas */
+      z-index: 10;
+    }
+
+    @keyframes fadeInScale {
+      from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    h2 {
+      color: #ffd700;
+      /* Dourado para destaque */
+      margin-bottom: 15px;
+      font-size: 2.2em;
+      font-weight: 600;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    p {
+      margin-bottom: 30px;
+      font-size: 1.1em;
+      line-height: 1.6;
+    }
+
+    /* Estilo dos botões */
+    button {
+      width: 100%;
+      margin: 15px 0;
+      padding: 18px 25px;
+      font-size: 1.1em;
+      font-weight: 600;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      display: flex;
+      /* Para alinhar ícone se houver */
+      align-items: center;
+      justify-content: center;
+    }
+
+    #telegramBtn {
+      background: linear-gradient(45deg, #0088cc, #45b7e6);
+      /* Gradiente Telegram */
+      color: #fff;
+    }
+
+
+
+    button:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      filter: brightness(1.1);
+      /* Um pouco mais claro no hover */
+    }
+
+    /* Responsividade básica */
+    @media (max-width: 600px) {
+      .glass-box {
+        padding: 30px 20px;
+        margin: 0 15px;
+      }
+
+      h2 {
+        font-size: 1.8em;
+      }
+
+      p {
+        font-size: 1em;
+      }
+
+      button {
+        padding: 15px 20px;
+        font-size: 1em;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Bolhas de fundo para efeito visual -->
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+
+  <div class="glass-box">
+    <h2>Olá MEU BEM !</h2>
+    <p>QUE BOM QUE VOCÊ SE INTERESSOU PELO MEU CONTEÚDO EXCLUSIVO! CLIQUE NO BOTÃO ABAIXO PARA FINALIZAR A COMPRA E ACESSAR O CONTEÚDO</p>
+    <button id="telegramBtn">ACESSAR O CONTEÚDO</button>
+
+  </div>
+
+  <script>
+    // Captura o pacote da URL, ex: alerta.html?pacote=bronze
+    const urlParams = new URLSearchParams(window.location.search);
+
+    // Converte o parâmetro para minúsculas e usa 'assinatura mensal' como padrão se não for encontrado
+    const pacote = (urlParams.get('pacote') || 'assinatura mensal').toLowerCase();
+
+    // Mensagens personalizadas por pacote/produto
+    const mensagens = {
+      "diamante": 'Oi lyra babe! 💖 Vim pelo pacote Diamante e mal posso esperar pelo meu conteúdo exclusivo!',
+      "bronze": 'Oi lyra babe! 💖 Vim pelo pacote Bronze e estou super animado para receber meu presente!',
+      "assinatura mensal": 'Oi lyra babe! 💖 Vim pela assinatura mensal do canal VIP e quero aproveitar tudo que vocês oferecem!',
+      "default": 'Oi! 💖 Tenho interesse no seu conteúdo e gostaria de saber mais!'
+    };
+
+    // Seleciona a mensagem correta.
+    const mensagem = encodeURIComponent(mensagens[pacote] || mensagens['default']);
+
+    // --- CONFIGURAÇÕES DE CONTATO ---
+    const telegramUser = 'Lyraababe';
+    const whatsappNumber = 'SEUNUMERO_AQUI'; // <-- Lembre-se de substituir este placeholder!
+
+    // --- LISTENERS DOS BOTÕES ---
+    document.getElementById('telegramBtn').onclick = () => {
+      window.open(`https://t.me/lyraababe?text=${mensagem}`, '_blank');
+    };
+
+    document.getElementById('whatsappBtn').onclick = () => {
+      if (whatsappNumber === 'SEUNUMERO_AQUI' || whatsappNumber === '') {
+        alert("Por favor, substitua 'SEUNUMERO_AQUI' pelo seu número completo no código JavaScript.");
+        return;
+      }
+      window.open(`https://wa.me/${whatsappNumber}?text=${mensagem}`, '_blank');
+    };
+
+    // Funções de alerta substituídas por uma versão simples para evitar o alert() nativo
+    function alert(message) {
+      const existingAlert = document.getElementById('custom-alert');
+      if (existingAlert) existingAlert.remove();
+
+      const alertBox = document.createElement('div');
+      alertBox.id = 'custom-alert';
+      alertBox.style.cssText = `
+          position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+          background: #f44336; color: white; padding: 15px 25px; border-radius: 8px;
+          z-index: 1000; box-shadow: 0 4px 8px rgba(0,0,0,0.3); font-family: Arial, sans-serif;
+          max-width: 90%; text-align: center;
+      `;
+      alertBox.textContent = message;
+      document.body.appendChild(alertBox);
+
+      setTimeout(() => {
+        alertBox.remove();
+      }, 5000);
+    }
+  </script>
+
+</body>
+
+</html>
