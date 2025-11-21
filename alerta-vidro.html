@@ -244,12 +244,12 @@
     const mensagem = encodeURIComponent(mensagens[pacote] || mensagens['default']);
 
     // --- CONFIGURAÇÕES DE CONTATO ---
-    const telegramUser = 'Lyraababe';
+    const telegramUser = 'lyrababe_bot';
     const whatsappNumber = 'SEUNUMERO_AQUI'; // <-- Lembre-se de substituir este placeholder!
 
     // --- LISTENERS DOS BOTÕES ---
     document.getElementById('telegramBtn').onclick = () => {
-      window.open(`https://t.me/lyraababe?text=${mensagem}`, '_blank');
+      window.open(`https://t.me/lyrababe_bot?text=${mensagem}`, '_blank');
     };
 
     document.getElementById('whatsappBtn').onclick = () => {
